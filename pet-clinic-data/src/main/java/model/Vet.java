@@ -1,4 +1,4 @@
-package com.demo.petclinic.model;
+package model;
 
 public class Vet extends Person{
 
