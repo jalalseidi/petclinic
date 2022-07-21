@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
+public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetTypeService petTypeService;
     private final PetService petService;
 
-    public OwnerServiceMap(PetTypeService petServiceMap, PetService petService) {
+    public OwnerMapService(PetTypeService petServiceMap, PetService petService) {
         this.petTypeService = petServiceMap;
         this.petService = petService;
     }
@@ -37,7 +37,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
                 object.getPets().forEach(pet -> {
                     if (pet.getPetType() != null) {
                         if (pet.getPetType().getId() == null) {
-                            pet.setPetType(petTypeService.save(pet.getPetType()));
+                            pet.setPetType(pet.getPetType());// why is that??
                         }
                     }else {
                         throw new RuntimeException("Pet Type is Required");
